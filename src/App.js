@@ -4,6 +4,7 @@ import AppContext from './AppContext';
 import LandingPage from './components/LandingPage/LandingPage';
 import ArtistNameHeader from './components/ArtistNameHeader/ArtistNameHeader';
 import WikipediaResults from './components/WikipediaResults/WikipediaResults';
+import { fetchWiki } from './Service/Service'
 import YouTubeResults from './components/YouTubeResults/YouTubeResults';
 import TicketMasterResults from './components/TicketMasterResults/TicketMasterResults';
 import NewsResults from './components/NewsResults/NewsResults';
@@ -22,7 +23,7 @@ class App extends Component {
   handleSubmit = (e, search) => {
     e.preventDefault();
     console.log('form submitted', search);
-    this.fetchWiki(search);
+    fetchWiki(search);
   };
 
   formatQueryParams = params => {

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const WikipediaResults = () => {
-  return <section id="wiki-results" />;
+class WikipediaResults extends Component {
+
+  render() {
+    return (
+      <section id="wiki-results"/>
+    )
+  }
 };
 
 export default WikipediaResults;

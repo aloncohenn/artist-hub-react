@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import AppContext from './AppContext';
+import { fetchWiki, fetchYouTube, fetchTicketMaster } from './Service/Service'
 import LandingPage from './components/LandingPage/LandingPage';
 import ArtistNameHeader from './components/ArtistNameHeader/ArtistNameHeader';
 import WikipediaResults from './components/WikipediaResults/WikipediaResults';
@@ -12,12 +13,41 @@ import Footer from './components/Footer/Footer';
 
 class App extends Component {
   state = {
-    wikiResults: null,
+    loading: true,
+    wikiResults: {},
     youtubeResults: [],
     ticketmasterResults: [],
-    newsResults: [],
-    socialMediaResults: []
+    newsResults: []
   };
+
+  handleSubmit = (e, search) => {
+    e.preventDefault();
+    fetchYouTube(search)
+      .then(response => {
+        this.setState({
+          youtubeResults: response
+        })
+      })
+      .catch(err => console.log(err));
+
+    fetchWiki(search)
+      .then(response => {
+        this.setState({
+          wikiResults: response
+        })
+      })
+      .catch(err => console.log(err))
+
+    fetchTicketMaster(search)
+      .then(response => {
+        this.setState({
+          ticketmasterResults: response
+        })
+      })
+      .catch(err => console.log(err))
+
+  };
+
 
   getWikiData = (wikiResults) => {
     this.setState({wikiResults});
